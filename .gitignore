@@ -41,7 +41,7 @@ Thumbs.db
 
 # Directories #
 ######################
-_src/node_modules/
-_src/.site/
+node_modules/
+.site/
 _src/.lib/
-_src/Gemfile.lock
+Gemfile.lock

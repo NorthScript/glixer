@@ -29,7 +29,7 @@ github_username:  ""
 # Build settings
 markdown: kramdown
 layouts_dir: ./_layouts
-source: ./
+source: ./_src
 destination: ./.site
 plugins_dir: ./_plugins
 data_dir: ./_data
@@ -44,7 +44,6 @@ exclude: ["Gemfile",
           "gulpfile.js",
           "node_modules",
           "package.json"]
-include: ["_pages"]
 keep_files: ["css",
              "fonts",
              "js"]
