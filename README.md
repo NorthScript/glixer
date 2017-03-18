@@ -36,20 +36,51 @@ The tools listed above are included with this package and are ready to go once t
    * Template: Blank (Ubuntu Logo)
    * Clone from Git: use your fork url here
 
-### Windows
-See Windows-Install.md
+### Local Machines
 
-### Mac OSX
- - [Node.js](https://nodejs.org/en/download/)
+#### System Dependencies
+
+##### Windows
+
+See WINDOWS.md for instructions on installing these dependencies
+
+###### 64-bit
+
+ - [Git](https://www.git-scm.com/download/win)
+ - [Node.js](https://nodejs.org/dist/v7.7.3/node-v7.7.3-x64.msi)
+ - [Ruby](https://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.3-x64.exe)
+ - [Ruby Developer Kit](https://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe) - See WINDOWS.md for details on installing this.
+ 
+###### 32-bit
+
+ - [Git](https://www.git-scm.com/download/win)
+ - [Node.js](https://nodejs.org/dist/v7.7.3/node-v7.7.3-x86.msi)
+ - [Ruby](https://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.3.exe)
+ - [Ruby Developer Kit](https://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe) - See WINDOWS.md for details on installing this.
+
+##### Mac OSX
+ - [Node.js](https://nodejs.org/dist/v7.7.3/node-v7.7.3.pkg)
  - [xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
 
 
-### Linux
+##### Linux
  - [Node.js](https://nodejs.org/en/download/package-manager)
  - `ruby`
  - `ruby-dev`
  - `zlib1g-dev`
  - `build-essential`
+ - `git`
+ 
+#### Cloning and setup
+Open a Command Prompt or Terminal window and type these commands in:
+```
+git clone https://github.com/north-script/glixer
+cd glixer
+rm -r -f .git (Windows users: rmdir /S .git)
+cd _src
+npm install
+```
+
  
 ### Github Pages Setup (For organization/users)
 1. Create a new repository in your user/organization
@@ -79,21 +110,6 @@ git clone https://github.com/north-script/glixer
 cd glixer/_src
 npm install
 ```
-
-## Operation
-
-### Local machines
-1. `cd glixer/_src`
-2. `gulp serve`
-2. [Click Me!](http://localhost:8080)
-3. Modify files in the `_src` folder and see that your browser reloads automatically!
-4. When you are finished editing and admiring your work, you can terminate the web server by pressing `Ctrl-C` in the command window
-5. to generate the files for github pages: run `gulp publish` while in the `_src` directory
-
-### C9.io
-1. `cd _src`
-2. `gulp serve`
-3. Click the "Preview" link on the top.
 
 ## Built by
 [Mike Boardley](https://www.linkedin.com/in/boardley/)
