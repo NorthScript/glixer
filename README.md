@@ -1,5 +1,5 @@
-# Glixer - GitHub Pages, Gulp, Jekyll, SCSS, Bootstrap.
-Blog, Portfolio & Website framework.
+<h1 align="center">Glixer - GitHub Pages, Gulp, Jekyll, SCSS, Bootstrap.</h1>
+<p align="center">Blog, Portfolio &amp Website framework.</p>
 
 ## Why?
 1. EASY to use and Quick to get started.
@@ -42,7 +42,7 @@ The tools listed above are included with this package and are ready to go once t
 
 ##### Windows
 
-See WINDOWS.md for instructions on installing these dependencies
+See WINDOWS.md for instructions on installing these dependencies. these links are download links for installers
 
 ###### 64-bit
 
@@ -76,40 +76,34 @@ Open a Command Prompt or Terminal window and type these commands in:
 ```
 git clone https://github.com/north-script/glixer
 cd glixer
-rm -r -f .git (Windows users: rmdir /S .git)
-cd _src
 npm install
 ```
 
- 
 ### Github Pages Setup (For organization/users)
 1. Create a new repository in your user/organization
   - Make sure that initialize this repository with a README is unchecked
   - If you are making this for a user profile, name your repository: yourusername.github.io
+  - If you are making this for a organization, make sure that the repository is created and owned by the organization and name it: yourorganization.github.io
 2. clone this repository: `git clone https://github.com/north-script/glixer`
-3. `cd ..`
-4. Mac/Linux: `rm -r -f .git` Windows: `rmdir /S .git`
+3. `cd glixer`
+4. Remove .git directory (Windows: `rmdir /S .git` Mac/Linux: `rm -r -f .git`) 
 5. `git init`
-6. `git remote add origin your-repository-url`
+6. `git remote add origin https://github.com/user-or-organization-name/user-or-organization-name.github.io`
 7. `git add .`
 8. `git commit -M "Initial commit"`
 9. `git push origin master`
+10. Optional: `npm install`
 
 ### Github Pages Setup (For projects/repositories)
+
 1. Clone your repository
 2. `cd` into your repository
 3. clone this repository `git clone https://github.com/north-script/glixer`
-4. rename the glixer folder into `docs`
+4. rename the glixer folder to docs.
 5. remove the .git (hidden) folder in your `docs` folder
 6. stage your changes and commit them.
-7. push your changes to your repository
-
-### Cloning/Building
-```
-git clone https://github.com/north-script/glixer
-cd glixer/_src
-npm install
-```
+7. push your changes to your repository.
+8. Go to your repository settings and enable github pages from your `docs` folder
 
 ## Built by
 [Mike Boardley](https://www.linkedin.com/in/boardley/)
@@ -123,7 +117,7 @@ Please email me your comments & feedback.
 
 [Samuel Brekke](https://www.linkedin.com/in/sjbrekke/)
 
-Please contact me for technical support
+Please contact me for any questions, comments, concerns and, feedback
 
  - by mail: [brekmister@gmail.com](mailto:brekmister@gmail.com)
  - Github: [brekmister](https://github.com/users/brekmister)
