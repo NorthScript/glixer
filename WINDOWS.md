@@ -18,9 +18,8 @@ You may need to scroll down to find it. there should be a line saying `System Ty
 5. Download the Ruby DevKit
   - (64-bit) https://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe
   - (32-bit) https://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe
-6. Open the application, a prompt will pop up asking where to extract the files. Make a new folder in the C:/ drive called `Ruby-DevKit`.
-   Click that folder to select it and click ok. This will take quite a bit depending wether you are running Windows on a Solid-State-Drive
-   or a Hard Disk Drive
+6. Open the application, a prompt will pop up asking where to extract the files. Make a new folder in the C:/ drive called `Ruby-DevKit`. (You can extract this anywhere else but, It's more accessible for other users this way)
+   Click that folder to select it and click ok. This will take quite a bit depending on your hardware.
 7. Open command prompt by pressing `Ctrl-R` and typing `cmd` into the input field
 8. Type the following commands:
 ```
@@ -31,15 +30,8 @@ exit
 ```
 9. Command prompt will close, open it again and type the following commands:
 ```
-git clone https://github.com/m-c-c/m-c-c.github.io
-cd m-c-c.github.io
-npm install
-```
-Optional: Change the folder name to your repository (replace your-fork-name with your repositories name and replace your-fork-url with your repositories URL)
-```
-git clone https://github.com/m-c-c/m-c-c.github.io -o your-fork-name
-cd your-fork-name
-git remote set-url origin your-repository-url
+git clone https://github.com/north-script/glixer
+cd glixer
 npm install
 ```
 If you see a thumbs up when running `npm install` then you are pretty much set to work on glixer!
