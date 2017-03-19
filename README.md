@@ -29,12 +29,31 @@ The tools listed above are included with this package and are ready to go once t
 ## Getting Started
 
 ### C9
+
+#### Setup
+
 1. Logon to Github
 2. Fork this [repository](https://github.com/north-script/glixer)
 3. Copy your fork url e.g. `git@github.com:YOURUSERNAME/glixer`
 4. On [c9.io](https://c9.io) create a new workspace
    * Template: Blank (Ubuntu Logo)
    * Clone from Git: use your fork url here
+5. When you get redirected to some sort of enviroment, look at the bottom, that's your command line. Click on it and enter the following command:
+`npm install`
+   
+#### Operation
+
+To view the work:
+ 1. In the command line, run `gulp serve` - If it quits by itself then there is something wrong
+ 2. To view the result, click the `preview` button at the top and click `Preview Running Application`
+ 
+To publish your work to Github run these commands in the command line:
+ ```
+ gulp publish
+ git add .
+ git commit
+ git push origin master
+ ```
 
 ### Local Machines
 
