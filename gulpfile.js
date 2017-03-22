@@ -46,7 +46,10 @@ gulp.task('build:copy', function() {
 		.pipe(gulp.dest(lib + 'fonts'));
 
 	// Copy JavaScript For Development
-	gulp.src(['node_modules/bootstrap-sass/assets/javascripts/bootstrap.js', 'node_modules/jquery/dist/jquery.js'])
+	gulp.src([
+		'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js', 
+		'node_modules/jquery/dist/jquery.js',
+		'/node_modules/leaflet/src/Leaflet.js'])
 		.pipe(gulp.dest(appDir + '/_js/vendor'));
 
 })
@@ -84,7 +87,15 @@ gulp.task('build:scripts:watch', ['build:scripts'], function(cb) {
 // Build Scripts
 gulp.task('build:scripts', function() {
   return streamqueue({ objectMode: true },
-        gulp.src(appDir + '/_js/**/*.js')
+        //gulp.src(appDir + '/_js/**/*.js')
+    	gulp.src(
+    		[
+	    		'/_js/vendors/jquery.js',
+	    		'/_js/vendors/bootstrap.js',
+	    		'/_js/**/*.js',
+	    		'/_js/*.js'
+    		]
+    	)
     )
     .pipe(concat('site.js'))
     .pipe(uglify())
