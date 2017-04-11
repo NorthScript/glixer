@@ -1,6 +1,6 @@
 {
   "name": "git_hub_pages_jekyll_gulp",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "GitHub Pages Jekyll Gulp build system  & task runner",
   "main": "site.js",
   "scripts": {
