@@ -90,10 +90,10 @@ gulp.task('build:scripts', function() {
         //gulp.src(appDir + '/_js/**/*.js')
     	gulp.src(
     		[
-	    		'/_js/vendors/jquery.js',
-	    		'/_js/vendors/bootstrap.js',
-	    		'/_js/**/*.js',
-	    		'/_js/*.js'
+	    		appDir + '/_js/vendor/jquery.js',
+	    		appDir + '/_js/vendor/bootstrap.js',
+	    		appDir + '/_js/**/*.js',
+	    		appDir + '/_js/*.js'
     		]
     	)
     )

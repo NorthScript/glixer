@@ -32,6 +32,7 @@
     "jshint": "^2.9.3",
     "leaflet": "^1.0.3",
     "node-neat": "^1.7.2",
+    "node-sass": "^4.5.2",
     "streamqueue": "^1.1.1"
   }
 }
