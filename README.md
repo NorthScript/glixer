@@ -111,7 +111,7 @@ npm install
 5. `git init`
 6. `git remote add origin https://github.com/user-or-organization-name/user-or-organization-name.github.io`
 7. `git add .`
-8. `git commit -M "Initial commit"`
+8. `git commit -m "Initial commit"`
 9. `git push origin master`
 10. Optional: `npm install`
 
