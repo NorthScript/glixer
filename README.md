@@ -24,7 +24,7 @@ View this jekyll theme in action [here](https://north-script.github.io/glixer)
 - [Jekyll](https://jekyllrb.com/)
 - [jQuery](https://jquery.com/)
 - [Node.js](https://nodejs.org/)
-- [SASS](http://gulpjs.com/)
+- [SASS](http://sass-lang.com/)
 
 The tools listed above are included with this package and are ready to go once this package is installed.
 
