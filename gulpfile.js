@@ -58,8 +58,8 @@ gulp.task('build:images', function(cb) {
     gulp.src([appDir+'/**/*.png',
               appDir+'/**/*.jpg',
               appDir+'/**/*.gif'])
-         .pipe(gulp.dest(''))
-         .pipe(gulp.dest(siteDir)).on('end', cb).on('error', cb);
+         .pipe(gulp.dest(siteDir + 'img'))
+         .pipe(gulp.dest(lib + 'img'));
 });
 
 // Runs Jekyll build
