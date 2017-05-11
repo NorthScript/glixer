@@ -1,7 +1,7 @@
 <h1 align="center">Glixer - GitHub Pages, Gulp, Jekyll, SCSS, Bootstrap.</h1>
 <p align="center">Blog, Portfolio &amp Website framework.</p>
 
-[![Join the chat at https://gitter.im/Northscript/glixer](https://badges.gitter.im/Northscript/glixer.svg)](https://gitter.im/Northscript/glixer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/Northscript/glixer](https://badges.gitter.im/Northscript/glixer.svg)](https://gitter.im/Northscript/glixer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  [![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/northscript-usergroup/glixer)
 
 ## Why?
 1. EASY to use and Quick to get started.
