@@ -35,19 +35,19 @@ var config = {
 // Copy vendor libraries from /node_modules into /vendor
 gulp.task('build:copy', function() {
 
-	// Copy Fonts To .Site Folder for Local Viewing 
+	// Copy Fonts To .Site Folder for Local Viewing
 	gulp.src(['node_modules/font-awesome/fonts/**/*.{ttf,woff,woff2,eof,svg}'])
 		.pipe(gulp.dest(siteDir + '/fonts/font-awesome'))
 		.pipe(gulp.dest(lib + 'fonts/font-awesome'));
 
-// Copy Fonts To .Site Folder for Local Viewing 
+// Copy Fonts To .Site Folder for Local Viewing
 	gulp.src('node_modules/bootstrap-sass/assets/fonts/**/*.{ttf,woff,woff2,eof,svg}')
 		.pipe(gulp.dest(siteDir + '/fonts'))
 		.pipe(gulp.dest(lib + 'fonts'));
 
 	// Copy JavaScript For Development
 	gulp.src([
-		'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js', 
+		'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
 		'node_modules/jquery/dist/jquery.js',
 		'/node_modules/leaflet/src/Leaflet.js'])
 		.pipe(gulp.dest(appDir + '/_js/vendor'));
@@ -105,7 +105,7 @@ gulp.task('build:scripts', function() {
 
 // Compile SCSS
 gulp.task('build:styles', function() {
-	return gulp.src(appDir + '/_scss/*.scss')
+	return gulp.src(appDir + '/_sass/*.scss')
 		.pipe(plumber(plumberErrorHandler))
 		.pipe(sourcemaps.init())
 		.pipe(sass({
@@ -119,12 +119,12 @@ gulp.task('build:styles', function() {
 
 gulp.task('prettify', function() {
 
-	gulp.src([appDir + "/_scss/**/*.scss"])
+	gulp.src([appDir + "/_sass/**/*.scss"])
 		.pipe(prettify({
 			debug: true,
 			indent_level: 1,
 		}))
-		.pipe(gulp.dest(appDir + '/_scss'));
+		.pipe(gulp.dest(appDir + '/_sass'));
 
 	gulp.src([appDir + '/*.html'])
 			.pipe(prettify({
@@ -156,7 +156,7 @@ gulp.task('serve', ['build:scripts', 'build:styles', 'build:images', 'build:copy
   gulp.watch(['_config.yml'], ['build:jekyll:watch']);
 
   // Watch app .scss files, changes are piped to browserSync
-  gulp.watch(appDir + '/_scss/**/*.scss', ['build:styles']);
+  gulp.watch(appDir + '/_sass/**/*.scss', ['build:styles']);
 
   // Watch app .js files
   gulp.watch(appDir + '/_js/**/*.js', ['build:scripts:watch']);
@@ -185,7 +185,7 @@ gulp.task('serve', ['build:scripts', 'build:styles', 'build:images', 'build:copy
 gulp.task('publish', ['build:scripts', 'build:styles', 'build:images', 'build:copy'],
      function() {
      			// Build & Copy All Of Our Jekyll Files and leave our source files alone
-          gulp.src([appDir + '/**/*', '!'+ appDir + '/**/*.yml', '!' + appDir + '/_scss', '!' + appDir + '/_scss/**', '!' + appDir + '/_js', '!' + appDir + '/_js/**'])
+          gulp.src([appDir + '/**/*', '!'+ appDir + '/**/*.yml', '!' + appDir + '/_sass', '!' + appDir + '/_sass/**', '!' + appDir + '/_js', '!' + appDir + '/_js/**'])
                .pipe(gulp.dest(lib));
 
           // Build & Copy Complied CSS, FONTS & JS
