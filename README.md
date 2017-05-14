@@ -52,8 +52,7 @@ To view the work:
 To publish your work to Github run these commands in the command line:
  ```
  gulp publish
- git add .
- git commit
+ git commit -a
  git push origin master
  ```
 
