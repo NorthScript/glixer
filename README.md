@@ -109,10 +109,9 @@ npm install
 4. Remove .git directory (Windows: `rmdir /S .git` Mac/Linux: `rm -r -f .git`) 
 5. `git init`
 6. `git remote add origin https://github.com/user-or-organization-name/user-or-organization-name.github.io`
-7. `git add .`
-8. `git commit -m "Initial commit"`
-9. `git push origin master`
-10. Optional: `npm install`
+7. `git commit -a -m "Initial commit"`
+8. `git push origin master`
+9. Optional: `npm install`
 
 ### Github Pages Setup (For projects/repositories)
 
