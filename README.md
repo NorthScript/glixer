@@ -12,7 +12,7 @@ People new to web developement and working professionals often do not have the k
 This project is meant to be a jump start for people in both groups.
 
 ## Demo
-View this jekyll theme in action [here](https://north-script.github.io/glixer)
+View this jekyll theme in action [here](https://northscript.github.io/)
 
 ## Built with:
 - [Bootstrap](http://getbootstrap.com/)
