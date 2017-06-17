@@ -182,7 +182,8 @@ glixer.init.native = function() {
    if (typeof nativeFunction === 'function') {
       nativeFunction();
    } else {
-      console.log('Platform "' + process.platform  + '" is not supported.');
+      console.log('Platform "' + process.platform  + '" is not supported.' +
+        '...EXITING');
       process.exit(1);
    }
 };
@@ -231,7 +232,8 @@ linux.checkDistro = function() {
    }
 
    console.log('NOT SUPPORTED');
-   console.log('Distro ' + id + ' and ' + id_like + ' is not supported.');
+   console.log('Distro ' + id + ' and ' + id_like + ' is not supported' +
+      '...EXITING');
 
    function getProp(string) {
       let startIndex = data.indexOf(string) + string.length;
