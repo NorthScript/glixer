@@ -194,6 +194,17 @@ glixer.init.native.linux = function() {
 
 var linux = glixer.init.native.linux;
 
+linux.checkRoot = function() {
+  if (process.getuid() !== 0) {
+    // Scrap this process, make another one with sudo.
+    childProcess.spawnSync('sudo',  process.argv, {
+      stdio: 'inherit',
+      cwd: process.cwd()
+    });
+    process.exit()
+  }
+}
+
 linux.checkDistro = function() {
    process.stdout.write('Checking Distro Support...');
    var data;
@@ -212,12 +223,15 @@ linux.checkDistro = function() {
       return prop();
    }
 
-   id = getProp('ID_LIKE=');
-   prop = linux[id];
+   var id_like = getProp('ID_LIKE=');
+   prop = linux[id_like];
    if (typeof prop === 'function') {
       console.log('SUPPORTED');
       return prop();
    }
+
+   console.log('NOT SUPPORTED');
+   console.log('Distro ' + id + ' and ' + id_like + ' is not supported.');
 
    function getProp(string) {
       let startIndex = data.indexOf(string) + string.length;
@@ -234,7 +248,7 @@ linux.debian = function() {
       'ruby',
       'ruby-dev'
    ];
-   linux.debian.checkDep();
+   linux.debian.checkDep(dep);
 };
 
 linux.debian.checkDep = function(deps) {
@@ -268,6 +282,7 @@ linux.debian.checkDep = function(deps) {
     }
 
     if (tbinstalled.length > 0) linux.debian.installDep(tbinstalled);
+    else glixer.init.afterNative();
 };
 
 linux.debian.installDep = function(tbinstalled) {
@@ -292,7 +307,11 @@ linux.debian.installDep = function(tbinstalled) {
       console.log('Cannot continue initialization...EXITING');
       process.exit(1);
     }
+
+    glixer.init.afterNative();
 };
+linux.ubuntu = linux.debian;
+
 
 // Windows Initialization (Some serious complicated stuff here)
 glixer.init.native.win32 = function() {
