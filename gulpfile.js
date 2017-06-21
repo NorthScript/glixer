@@ -19,47 +19,51 @@ var gulp = require('gulp'),
 	streamqueue  = require('streamqueue'),
 	siteDir = '.site',
 	appDir = './_src',
-     lib = './';
+  lib = './';
 
 var plumberErrorHandler = {
-			errorHandler: notify.onError({
-				title: 'Gulp',
-				message: 'Error: <%= error.message %>'
-			})
-		};
+  errorHandler: notify.onError({
+    title: 'Gulp',
+    message: 'Error: <%= error.message %>'
+  })
+};
 
 var config = {
-  drafts:     !!gutil.env.drafts      // pass --drafts flag to serve drafts
+  drafts: !!gutil.env.drafts  // pass --drafts flag to serve drafts
 };
 
 // Copy vendor libraries from /node_modules into /vendor
 gulp.task('build:copy', function() {
+  // Copy Fonts To .Site Folder for Local Viewing
+  gulp.src('node_modules/font-awesome/fonts/**/*.{ttf,woff,woff2,eof,svg}')
+    .pipe(gulp.dest(siteDir + '/fonts/font-awesome'))
+    .pipe(gulp.dest(lib + 'fonts/font-awesome'));
 
-	// Copy Fonts To .Site Folder for Local Viewing
-	gulp.src(['node_modules/font-awesome/fonts/**/*.{ttf,woff,woff2,eof,svg}'])
-		.pipe(gulp.dest(siteDir + '/fonts/font-awesome'))
-		.pipe(gulp.dest(lib + 'fonts/font-awesome'));
+  // Copy Fonts To .Site Folder for Local Viewing
+  gulp.src('node_modules/bootstrap-sass/assets/fonts/**/*.{ttf,woff,woff2,eof,svg}')
+    .pipe(gulp.dest(siteDir + '/fonts'))
+    .pipe(gulp.dest(lib + 'fonts'));
 
-// Copy Fonts To .Site Folder for Local Viewing
-	gulp.src('node_modules/bootstrap-sass/assets/fonts/**/*.{ttf,woff,woff2,eof,svg}')
-		.pipe(gulp.dest(siteDir + '/fonts'))
-		.pipe(gulp.dest(lib + 'fonts'));
+  // Copy JavaScript For Development
+  let vendorjs = [
+    'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
+    'node_modules/jquery/dist/jquery.js',
+    '/node_modules/leaflet/src/Leaflet.js'
+  ];
+  gulp.src(vendorjs)
+    .pipe(gulp.dest(appDir + '/_js/vendor'));
+});
 
-	// Copy JavaScript For Development
-	gulp.src([
-		'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
-		'node_modules/jquery/dist/jquery.js',
-		'/node_modules/leaflet/src/Leaflet.js'])
-		.pipe(gulp.dest(appDir + '/_js/vendor'));
+gulp.task('build:images', function() {
+  let images = [
+    appDir+'/**/*.png',
+    appDir+'/**/*.jpg',
+    appDir+'/**/*.gif'
+  ];
 
-})
-
-gulp.task('build:images', function(cb) {
-    gulp.src([appDir+'/**/*.png',
-              appDir+'/**/*.jpg',
-              appDir+'/**/*.gif'])
-         .pipe(gulp.dest(siteDir + 'img'))
-         .pipe(gulp.dest(lib + 'img'));
+  gulp.src(images)
+    .pipe(gulp.dest(siteDir + 'img'))
+    .pipe(gulp.dest(lib + 'img'));
 });
 
 // Runs Jekyll build
@@ -86,17 +90,14 @@ gulp.task('build:scripts:watch', ['build:scripts'], function(cb) {
 
 // Build Scripts
 gulp.task('build:scripts', function() {
-  return streamqueue({ objectMode: true },
-        //gulp.src(appDir + '/_js/**/*.js')
-    	gulp.src(
-    		[
-	    		appDir + '/_js/vendor/jquery.js',
-	    		appDir + '/_js/vendor/bootstrap.js',
-	    		appDir + '/_js/**/*.js',
-	    		appDir + '/_js/*.js'
-    		]
-    	)
-    )
+  let jsfiles = [
+    appDir + '/_js/vendor/jquery.js',
+    appDir + '/_js/vendor/bootstrap.js',
+    appDir + '/_js/**/*.js',
+    appDir + '/_js/*.js'
+  ];
+
+  return streamqueue({ objectMode: true }, gulp.src(jsfiles))
     .pipe(concat('site.js'))
     .pipe(uglify())
     .pipe(gulp.dest(siteDir + '/js'))
@@ -118,32 +119,32 @@ gulp.task('build:styles', function() {
 });
 
 gulp.task('prettify', function() {
+  let options = {
+    debug: true,
+    indent_level: 1
+  };
 
 	gulp.src([appDir + "/_sass/**/*.scss"])
-		.pipe(prettify({
-			debug: true,
-			indent_level: 1,
-		}))
+		.pipe(prettify(options))
 		.pipe(gulp.dest(appDir + '/_sass'));
 
 	gulp.src([appDir + '/*.html'])
-			.pipe(prettify({
-					debug: true,
-					indent_level: 1,
-			}))
+			.pipe(prettify(options))
 			.pipe(gulp.dest('./'));
 
 	gulp.src([appDir + '/_js/*.js'])
-		.pipe(prettify({
-				debug: true,
-				indent_level: 1,
-		}))
+		.pipe(prettify(options))
 		.pipe(gulp.dest(appDir + '/_js'));
 });
 
-gulp.task('serve', ['build:scripts', 'build:styles', 'build:images', 'build:copy', 'build:jekyll'],
-          function() {
-
+let servedep = [
+  'build:scripts',
+  'build:styles',
+  'build:images',
+  'build:copy',
+  'build:jekyll'
+];
+gulp.task('serve', servedep, function() {
   browserSync.init({
     server: siteDir,
     ghostMode: false, // do not mirror clicks, reloads, etc. (performance optimization)
@@ -182,15 +183,33 @@ gulp.task('serve', ['build:scripts', 'build:styles', 'build:images', 'build:copy
   gulp.watch(appDir + './icons/favicon.ico', ['build:jekyll:watch']);
 });
 
-gulp.task('publish', ['build:scripts', 'build:styles', 'build:images', 'build:copy'],
-     function() {
-     			// Build & Copy All Of Our Jekyll Files and leave our source files alone
-          gulp.src([appDir + '/**/*', '!'+ appDir + '/**/*.yml', '!' + appDir + '/_sass', '!' + appDir + '/_sass/**', '!' + appDir + '/_js', '!' + appDir + '/_js/**'])
-               .pipe(gulp.dest(lib));
+let publishdep = [
+  'build:scripts',
+  'build:styles',
+  'build:images',
+  'build:copy'
+];
+gulp.task('publish', publishdep, function() {
+  // Build & Copy All Of Our Jekyll Files and leave our source files alone
+  let jekyllFiles = [
+    appDir + '/**/*',
+    '!'+ appDir + '/**/*.yml',
+    '!' + appDir + '/_sass',
+    '!' + appDir + '/_sass/**',
+    '!' + appDir + '/_js',
+    '!' + appDir + '/_js/**'
+  ];
+  gulp.src(jekyllFiles)
+    .pipe(gulp.dest(lib));
 
-          // Build & Copy Complied CSS, FONTS & JS
-          gulp.src([siteDir + '/css/', siteDir + '/**/*.css', siteDir + '/js/', siteDir + '/**/*.js'])
-         			.pipe(gulp.dest(lib));
-     }
-);
+  // Build & Copy Complied CSS, FONTS & JS
+  let compiledfiles = [
+    siteDir + '/css/',
+    siteDir + '/**/*.css',
+    siteDir + '/js/',
+    siteDir + '/**/*.js'
+  ];
+  gulp.src(compiledfiles)
+    .pipe(gulp.dest(lib));
+});
 //https://gist.github.com/bradbergeron-us/d9f4e454f5033602ce30 - I think this is what we want.
