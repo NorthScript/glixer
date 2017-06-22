@@ -126,7 +126,7 @@ glixer.init.npm.global = function() {
 glixer.init.npm.global.install = function(list) {
    process.stdout.write('Installing global NPM dependencies...\n');
    try {
-      childProcess.execSync('npm install -g ' + tbinstalled.join(' '),
+      childProcess.execSync('npm install -g ' + list.join(' '),
          { stdio: 'ignore' });
       console.log('SUCCESS');
    } catch(err) {
