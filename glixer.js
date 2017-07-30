@@ -576,4 +576,9 @@ windows.rubyDev.clean = function() {
   }
 };
 
+glixer.init.native.darwin = function() {
+  linux.checkRoot();
+  glixer.init.afterNative();
+};
+
 glixer();
