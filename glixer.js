@@ -1,8 +1,13 @@
+#! /usr/bin/env node
 var childProcess = require('child_process');
 var fs = require('fs');
 var http = require('http');
 var os = require('os');
 var userInfo = os.userInfo();
+var noRootExec = {
+  encoding: 'utf-8'
+};
+
 
 function glixer() {
   var args = process.argv.slice(2);
@@ -29,7 +34,7 @@ glixer.init.gems = function() {
 glixer.init.gems.check = function() {
    process.stdout.write('Getting list of installed gems...');
    try {
-      var result = childProcess.execSync('gem list', {encoding: 'utf-8'});
+      var result = childProcess.execSync('gem list', noRootExec);
       console.log('DONE');
    } catch(err) {
       console.log('FAILED');
@@ -94,7 +99,7 @@ glixer.init.npm = function() {
 glixer.init.npm.global = function() {
    process.stdout.write('Getting list of installed global NPM packages...');
    try {
-      var npmglobal = childProcess.execSync('npm list -g', 'utf-8');
+      var npmglobal = childProcess.execSync('npm list -g', noRootExec);
       console.log('DONE');
    } catch(err) {
       console.log('FAILED');
@@ -110,6 +115,7 @@ glixer.init.npm.global = function() {
    console.log('Checking global NPM dependencies:');
    for (var i = 0; i < npmdep.length; i++) {
       process.stdout.write('\t' + npmdep[i] + '...');
+
       if (npmglobal.indexOf(npmdep[i]) >= 0) {
          console.log('INSTALLED');
       } else {
@@ -138,9 +144,12 @@ glixer.init.npm.global.install = function(list) {
 };
 
 glixer.init.npm.local = function() {
+   let execOptions = noRootExec;
+   execOptions.stdio = 'ignore';
+
    process.stdout.write('Running npm install...');
    try {
-      childProcess.execSync('npm install', {stdio: 'ignore'});
+      childProcess.execSync('npm install', noRootExec);
       console.log('SUCCESS');
    } catch(err) {
       console.log('FAILED');
@@ -197,13 +206,13 @@ var linux = glixer.init.native.linux;
 
 linux.checkRoot = function() {
   if (process.getuid() !== 0) {
-    // Scrap this process, make another one with sudo.
-    childProcess.spawnSync('sudo',  process.argv, {
-      stdio: 'inherit',
-      cwd: process.cwd()
-    });
-    process.exit()
+    childProcess.spawnSync(`sudo`, [...process.argv, process.getuid()],
+      {stdio: 'inherit'});
+    process.exit();
   }
+
+
+  noRootExec.uid = parseInt(process.argv.slice(3)[0]);
 }
 
 linux.checkDistro = function() {
