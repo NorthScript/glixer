@@ -40,15 +40,15 @@ The tools listed above are included with this package and are ready to go once t
 4. On [c9.io](https://c9.io) create a new workspace
    * Template: Blank (Ubuntu Logo)
    * Clone from Git: use your fork url here
-5. When you get redirected to some sort of enviroment, look at the bottom, that's your command line. Click on it and enter the following command:
-`npm install`
-   
+5. When you get redirected to some sort of environment, look at the bottom, that's your command line. Click on it and enter the following command:
+`node glixer.js init`
+
 #### Operation
 
 To view the work:
  1. In the command line, run `gulp serve` - If it quits by itself then there is something wrong
  2. To view the result, click the `preview` button at the top and click `Preview Running Application`
- 
+
 To publish your work to Github run these commands in the command line:
  ```
  gulp publish
@@ -68,15 +68,17 @@ See WINDOWS.md for instructions on installing these dependencies. these links ar
 
  - [Git](https://www.git-scm.com/download/win)
  - [Node.js](https://nodejs.org/dist/v7.7.3/node-v7.7.3-x64.msi)
- - [Ruby](https://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.3-x64.exe)
- - [Ruby Developer Kit](https://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe) - See WINDOWS.md for details on installing this.
- 
+ - [Ruby](https://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.3-x64.exe)\*
+ - [Ruby Developer Kit](https://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe)\*
+
 ###### 32-bit
 
  - [Git](https://www.git-scm.com/download/win)
  - [Node.js](https://nodejs.org/dist/v7.7.3/node-v7.7.3-x86.msi)
- - [Ruby](https://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.3.exe)
- - [Ruby Developer Kit](https://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe) - See WINDOWS.md for details on installing this.
+ - [Ruby](https://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.3.exe) \*
+ - [Ruby Developer Kit](https://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe)\*
+
+\* See WINDOWS.md for details on installing these however, `node glixer.js init` will install these dependencies for you
 
 ##### Mac OSX
  - [Node.js](https://nodejs.org/dist/v7.7.3/node-v7.7.3.pkg)
@@ -85,18 +87,20 @@ See WINDOWS.md for instructions on installing these dependencies. these links ar
 
 ##### Linux
  - [Node.js](https://nodejs.org/en/download/package-manager)
- - `ruby`
- - `ruby-dev`
- - `zlib1g-dev`
- - `build-essential`
- - `git`
- 
+ - `ruby`*
+ - `ruby-dev`*
+ - `zlib1g-dev`*
+ - `build-essential`*
+ - `git`*
+
+\* These will be automatically installed with `node glixer.js init`
+
 #### Cloning and setup
 Open a Command Prompt or Terminal window and type these commands in:
 ```
-git clone https://github.com/north-script/glixer
+git clone https://github.com/NorthScript/glixer
 cd glixer
-npm install
+node ./glixer.js install
 ```
 
 ### Github Pages Setup (For organization/users)
@@ -106,7 +110,7 @@ npm install
   - If you are making this for a organization, make sure that the repository is created and owned by the organization and name it: yourorganization.github.io
 2. clone this repository: `git clone https://github.com/north-script/glixer`
 3. `cd glixer`
-4. Remove .git directory (Windows: `rmdir /S .git` Mac/Linux: `rm -r -f .git`) 
+4. Remove .git directory (Windows: `rmdir /S .git` Mac/Linux: `rm -r -f .git`)
 5. `git init`
 6. `git remote add origin https://github.com/user-or-organization-name/user-or-organization-name.github.io`
 7. `git commit -a -m "Initial commit"`
@@ -140,5 +144,5 @@ Please contact me for any questions, comments, concerns and, feedback
 
  - by mail: [brekmister@gmail.com](mailto:brekmister@gmail.com)
  - Github: [brekmister](https://github.com/users/brekmister)
- 
+
 ---
